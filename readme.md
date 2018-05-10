@@ -8,24 +8,21 @@ From here you will be able to know that how you will run your Laravel project us
 git clone https://github.com/pietheinstrengholt/laravel-docker-k8s
 ```
  
- Now run the following command from your terminal one by one. Running the commands be sure that you have installed docker.You will get install instructions from this
+ Now run the following command from your terminal one by one. Running the commands be sure that you have installed docker. You will get install instructions from this
  [link](https://docs.docker.com/)
 
 ```sh
 docker-compose build
-
 ```
 
 ```sh
 docker-compose up -d
-
 ```
 
 Now browse project 
 
  ```
  http://localhost:8181/
-
 ```
  
 ### Deploy the project using Kubernetes
@@ -34,34 +31,32 @@ At first build image running the command:
 
 ```sh
 docker build . -f ./deploy/dockerfile -t laravel-on-k8s:v1
-
 ```
 
 Now login in docker hub. Running the command be sure that you have created an account in docker hub. If not go to the [link](https://hub.docker.com/) and create account.
 
  ```
  docker login
- 
  ```
 
 Now run the following command for Pushing image in docker registry.In the command pietheinstrengholt is my docker id and laravel-on-k8s is repository name and v1 is tag name. Modify command according to your docker id, repository name and tag name.
 
 ```
 docker tag laravel-on-k8s:v1 docker.io/pietheinstrengholt/laravel-on-k8s:v1
-
 ```
 
 ```
 docker push docker.io/pietheinstrengholt/laravel-on-k8s:v1
-
 ```
 
-Now run minikube. Running the commands be sure that you have installed minikube.If not installed, you can get install instructions from this [link](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+Now run minikube. Running the commands be sure that you have installed minikube. If not installed, you can get install instructions from this [link](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 
 ```
 minikube start
-
 ```
+
+If you want to run this using your own image, change the following file: deploy/app/deploy.yml
+image: docker.io/pietheinstrengholt/laravel-docker-k8s:v1
 
 Now run the following commands for deploying your project:
 
@@ -75,20 +70,17 @@ Now run the following commands to see minikube dashboard:
 
 ```
 minikube dashboard
-
 ```
 
 You will get this url :
 
 ```
 http://192.168.99.100:30000/#!/overview?namespace=default
-
 ```
 
 
 ``` 
 kubectl get svc
-
 ```
 
 Running above command you will get following information:
@@ -103,9 +95,16 @@ laravel-api  | LoadBalancer  | 10.0.0.11  |  <pending>   |  80:32676/TCP  |  4m
 Now you can browse your project using following url :
 
 ```
- http://192.168.99.100:32676/
-
+http://192.168.99.100:32676/
 ``` 
+
+### TODO
+Run the images straight from the docker.io hub:
+
+```
+kubectl run --image=docker.io/pietheinstrengholt/laravel-docker-k8s:v1 laravel-docker-k8s --port=8181 --env="DOMAIN=cluster"
+kubectl expose deployment laravel-docker-k8s --port=8181 --name=laravel-docker-k8s
+```
 
 ### Extra Note :
 
@@ -114,7 +113,7 @@ Now you can browse your project using following url :
 > - If you modify .env file, You have to run following command:
 
 ```  
-     base64 -b -i deploy/env/.env
+base64 -b -i deploy/env/.env
 ```
 
 > - Running the command you will get base 64 encoded string. Put the string in deploy\app\secret.yml. And then run the commands for deploying.

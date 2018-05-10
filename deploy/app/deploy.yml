@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: laravel-app
-        image: docker.io/nahid35/laravel:v4
+        image: docker.io/pietheinstrengholt/laravel-docker-k8s:v1
         volumeMounts:
         - name: app-secret
           mountPath: "/var/www/html/secret"
