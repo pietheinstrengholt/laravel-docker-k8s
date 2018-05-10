@@ -3,11 +3,10 @@ apiVersion: v1
 metadata:
   name: laravel-service
 spec:
+  ports:
+  - name: pat-api-port
+    port: 80
+    targetPort: pathao-port
   selector:
     app: laravel-app
-  ports:
-  - protocol: TCP
-    name: pat-api-port
-    port: 80
-    targetPort: 30801
-
+  type: LoadBalancer
