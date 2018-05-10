@@ -1,6 +1,7 @@
 # laravel-docker-kubernetes
 
-From here you will be able to know that how you will run your Laravel project using Docker and how you will deploy using Kubernetes(minikube)
+Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. I'm using this personal repository as an attempt to package and run Laravel using Docker and deploy it on Kubernetes. In this tutorial I'm using Minikube, which is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day. This repository is a copy of the laravel-docker-k8s from nahidulhasan [link](https://github.com/nahidulhasan/laravel-docker-k8s), but since I'm going to adjust it heavily I think it is better to copy than to fork.
+
 
 ### Run the project using docker
 
