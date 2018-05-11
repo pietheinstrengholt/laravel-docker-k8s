@@ -6,7 +6,7 @@ This repository is a copy of the laravel-docker-k8s from [nahidulhasan](https://
 
 ### Build and run the docker image from the project folder
 
-Start the tutorial by cloning the current repostory by usig the following command:
+Start the tutorial by cloning the current repository by using the following command:
 
 ``` 
 git clone https://github.com/pietheinstrengholt/laravel-docker-k8s
@@ -40,7 +40,7 @@ The next step is that we will create a new Docker image, which will be pushed to
 docker build . -f ./deploy/dockerfile -t laravel-on-k8s:v1
 ```
 
-Before pushing the image make sure you are logged into the Docker Hub. Run the command below to login. If you not have a Docker acount please sign up using the this [link](https://hub.docker.com/).
+Before pushing the image make sure you are logged into the Docker Hub. Run the command below to login. If you not have a Docker account please sign up using the this [link](https://hub.docker.com/).
 
 ```
 docker login
