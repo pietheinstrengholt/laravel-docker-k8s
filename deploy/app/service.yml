@@ -1,12 +1,14 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: laravel-service
+  name: laravel-project
+  namespace: default
 spec:
-  ports:
-  - name: pat-api-port
-    port: 80
-    targetPort: pathao-port
   selector:
     app: laravel-app
-  type: LoadBalancer
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
